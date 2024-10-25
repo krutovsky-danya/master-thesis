@@ -1,0 +1,84 @@
+\documentclass[a4paper,14pt]{article}
+\usepackage{float}
+\usepackage{cite}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage[dvips]{graphicx}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx} % Required for inserting images
+
+\textheight=220mm
+\textwidth=160mm
+\oddsidemargin=0.1in
+\evensidemargin=0.1in
+
+\title{sopromat}
+\author{Даня Крутовский}
+\date{October 2024}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\footnotesize{Современные проблемы математики и ее приложений}}
+\fancyhead[R]{\footnotesize{Тезисы конференции}}
+\fancyfoot{}
+\fancyfoot[L]{\footnotesize{Екатеринбург, Россия}}
+\fancyfoot[R]{\footnotesize{29 января -- 2 февраля и 16 февраля, 2023}}
+\renewcommand{\footrulewidth}{0.1 mm}
+
+\begin{center}
+\textbf{Поиск оптимальной стратегии игры в симуляторе владельца продукта с помощью Deep RL}\\
+\vspace{\baselineskip}
+Крутовский Д.А.\\
+\emph{Уральский федеральный университет, Екатеринбург, Россия}\\
+krutovskiy.d@yandex.ru
+\vspace{\baselineskip}\\
+
+\end{center}
+\vspace{\baselineskip}
+
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+\section{Введение}
+
+\subsection{Что такое Reinforcement Learning?}
+
+Обучение с подкреплением - это обучение тому, что надо делать, как следует отображать ситуацию в действия, чтобы максимизировать некоторый сигнал поощрения (вознаграждения), принимающий числовые значения \cite{Pi1}.
+
+Агент - обучающийся и принимающий решение алгоритм.
+Совокупность объектов вне агента, с которыми он взаимодействует, обозначается термином окружающая среда.
+Между ними постоянно происходят взаимодействия: агент выбирает действия, окружающая среда реагирует, создает новую ситуацию и генерирует вознаграждение.
+
+% Картинка
+
+Более конкретно, на каждом дискретном шаге $t \in 1, 2, 3, ...$ агент получает описание состояния окружающей среды $s_t \in S$. На основании этого описания агент выбирает действие $a_t \in A(s_t)$. На следующем временном шаге агент получает вознаграждение $r_{t+1} \in \mathbb{R}$ и оказывается в новом состоянии $s_{t+1}$ \cite{Pi1}.
+
+\small
+\begin{thebibliography}{99}
+
+\bibitem{Pi1}
+Р.~С.~Саттон, Э.~Г.~Барто. Обучение с подкреплением. {\it Адаптивные и интеллектуальные системы}, (2014), 12--13, 74--75
+
+\bibitem{Pi2}
+V.~D.~Mazurov, W.~J.~Shi. A note to the characterization of sporadic simple groups. {\it Algebra Colloq.},
+{\bf 5}:~3 (1998), 285--288.
+
+\bibitem{Pi3}
+P.~Poto\v{c}nik, P.~Spiga, G.~Verret. Cubic vertex--transitive graphs on up to 1280 vertices. arXiv:1201.5317v1 [math.CO].
+
+\bibitem{Pi4}
+J.~H.~Conway, R.~T.~Curtis, S.~P.~Norton, R.~A.~Parker, R.~A.~Wilson. Atlas of finite groups.
+Oxford: Clarendon Press, 1985.
+
+\bibitem{Pi5}
+А.~С.~Кондратьев, Н.~А.~Минигулов. О конечных неразрешимых $4$-примарных $3'$-группах. {\it Тезисы международной конференции "Алгебра, теория чисел и математическое моделирование динамических систем"\,, посвященной 70-летию А.Х. Журтова.} Нальчик: издательство КБГУ, 2019, 56--57.
+\end{thebibliography}
+\normalsize
+
+\end{document}

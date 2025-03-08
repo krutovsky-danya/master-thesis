@@ -1,0 +1,352 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[a4paper,top=2.0cm,bottom=2.0cm,left=3.0cm,right=1.5cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{esvect}
+\usepackage{subfig}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{color,soul}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{cmap}
+\usepackage{mathtext} 
+\usepackage{lastpage}
+\usepackage{totcount}
+\usepackage{fancyhdr}
+\captionsetup{labelsep=endash}
+\captionsetup[figure]{name=Рисунок}
+\captionsetup{font={large}}
+
+% \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{float}
+\renewcommand{\floatpagefraction}{1}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\fontsize{14pt}{14pt}\selectfont\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}
+
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\makeatletter
+\@addtoreset{figure}{section} % Нумерация рисунков будет пересчитываться при каждом новом разделе
+\makeatother
+
+\linespread{1.5}
+\setlength{\parskip}{0.4cm}
+\setlength{\parindent}{1cm}
+
+\begin{document}
+
+\newcommand{\refpar}[1]{(\ref{#1})}
+\fontsize{14pt}{14pt}\normalfont
+
+\titleformat{\subsection}
+{\normalfont\fontsize{14pt}{14pt}\selectfont\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalfont\fontsize{14pt}{14pt}\selectfont\bfseries}{\thesubsubsection}{1em}{}
+
+\begin{titlepage}
+{
+\fontsize{14pt}{20pt}\normalfont
+\centerline{МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ}
+\centerline{ФЕДЕРАЦИИ}
+\centerline{федеральное государственное автономное образовательное учреждение}
+\centerline{высшего образования}
+\centerline{УРАЛЬСКИЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ}
+\centerline{имени первого Президента России Б.Н. Ельцина}
+\vskip0.5cm
+\centerline{ИНСТИТУТ ЕСТЕСТВЕННЫХ НАУК И МАТЕМАТИКИ}
+\vskip1cm
+\centerline{\hl{Кафедра теоретической и математической физики}}
+}
+\vskip1cm
+
+\centerline{\textbf{Поиск оптимальной стратегии в симуляторе владельца продукта}}
+\centerline{\textbf{с помощью Deep Reinforcement Learning}}
+
+\vskip0.5cm
+\centerline{Направление подготовки 02.04.01 <<Математика и компьютерные науки>>}
+
+\null\hfill
+
+\noindent\makebox[\textwidth][c]{%
+    \begin{minipage}[t]{.5\textwidth}
+        \centerline{Зав. кафедрой:}
+        \centerline{\hl{д. ф.-м. н., доц. Е. А. Елфимова}}
+        \vskip0.8cm
+        \centerline{\rule[-1pt]{4.5cm}{0.4pt}}
+    \end{minipage}%
+    
+    \begin{minipage}[t]{.5\textwidth}
+        \centerline{Выпускная квалификационная}
+        \centerline{работа магистранта}
+        \centerline{\textbf{Крутовского}}
+        \centerline{\textbf{Данила Александровича}}
+        \vskip0.4cm
+        \centerline{\rule[-1pt]{4.5cm}{0.4pt} }
+    \end{minipage}
+}
+
+\vskip0.5cm
+\noindent\makebox[\textwidth][c]{%
+    \begin{minipage}[t]{.5\textwidth}
+        \centerline{Нормоконтролер:}
+        \centerline{\hl{к. ф.-м. н. Е. С. Пьянзина}}
+        \vskip0.8cm
+        \centerline{\rule[-1pt]{4.5cm}{0.4pt}}
+    \end{minipage}% <---------------- Note the use of "%"
+    
+    \begin{minipage}[t]{.5\textwidth}
+        \centerline{Научный руководитель:\\}
+        \centerline{к. ф.-м. н. А. А. Кошелев\\}
+        \vskip0.8cm
+        \centerline{\rule[-1pt]{4.5cm}{0.4pt}} 
+    \end{minipage}
+}
+
+\vfill
+\centerline{Екатеринбург}
+\centerline{2025}
+\end{titlepage}
+
+\setcounter{page}{2}
+
+% \regtotcounter{figure}
+\regtotcounter{table}
+\newtotcounter{citnum}
+\def\oldbibitem{} 
+\let\oldbibitem=\bibitem
+\def\bibitem{\stepcounter{citnum}\oldbibitem}
+
+\section*{\centering{РЕФЕРАТ}}
+Выпускная квалификационная работа Крутовского Данил Александровича «Поиск оптимальной стратегии в симуляторе владельца продукта с помощью Deep Reinforcement Learning». В работе содержится \pageref{LastPage} страниц, 28 рисунков, \total{table} таблица, \total{citnum} источников, 1 приложение.
+
+Ключевые слова: обучение с подкреплением, среда, агент, функция наград, Q-обучение.
+
+Целью данной работы является алгоритм, способный обыграть человека в Симуляторе владельца продукта.
+
+\hl{Написать реферат}
+
+Для достижения цели были поставлены следующие задачи:
+\begin{enumerate}
+  \item Изучение теоретического материала по темам: обучение с подкреплением;
+  \item Настройка взаимодействие агента с игрой-симулятором владельца продукта;
+  \item Построение бейзлайна обучения агента на основе Double DQN;
+  \item Исследование проблем текущего пайплайна обучения агента.
+\end{enumerate}
+
+\newpage
+
+\let\mtcontentsname\contentsname
+\renewcommand\contentsname{\centering\MakeUppercase\mtcontentsname}
+\tableofcontents
+\newpage
+
+\section*{\centering{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}}
+\addcontentsline{toc}{section}{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}
+
+В настоящей работе применяют следующие обозначения и сокращения:
+
+RL -- reinforcement learning, обучение с подкрепление
+
+$\pi$ -- стратегия, политика 
+
+DQN - Deep Q-Network, алгоритм обучения с подкреплением
+
+Python - 
+
+pytorch - 
+
+Godot - 
+
+Датасет - 
+
+Лидерборд - 
+
+
+
+\hl{Дополнить списко обозначений}
+
+Репозиторий -- хранилище файлов, кода или данных, где разработчики могут совместно работать над проектом, отслеживать изменения, управлять версиями и делиться информацией
+
+GitHub -- веб-платформа для хостинга репозиториев и совместной работы над проектами с использованием системы контроля версий Git
+
+Git -- распределенная система управления версиями, предназначенная для отслеживания изменений в исходном коде проекта, совместной работы нескольких разработчиков и управления версиями файлов
+
+Юнит-тесты -- процесс проверки отдельных модулей программы на корректность их работы
+
+\newpage
+
+\section*{\centering{ВВЕДЕНИЕ}}
+\addcontentsline{toc}{section}{ВВЕДЕНИЕ}
+
+Обучение с подкреплением - это обучение тому, что надо делать, как следует отображать ситуацию в действия, чтобы максимизировать некоторый сигнал поощрения (вознаграждения), принимающий числовые значения \cite{Satton-Barto}.
+
+Product Owner Sim \cite{game-link} предлагает вам управлять проектом с бюджетом 200 тысяч долларов и двумя роботами-разработчиками.
+Каждый разработчик тратит на задачи по 10 часов за спринт, но при условии, что они требуют оплаты в 10 тысяч долларов за работу.
+На доход проекта влияет количество пользователей и их лояльность.
+Для увеличения этих показателей нужно покупать исследования, декомпозировать их на задачи и выпускать новые функции.
+Вы должны использовать свои ресурсы оптимально для достижения цели в один миллион долларов.
+Главный показатель в игре -- номер спринта, на котором была достигнута цель, чем меньше, тем лучше.
+
+\hl{Дополнить или переписать введение}
+
+\newpage
+
+\section*{\centering{ОСНОВНАЯ ЧАСТЬ}}
+\addcontentsline{toc}{section}{ОСНОВНАЯ ЧАСТЬ}
+
+\section{Подготовка инфраструктуры}
+
+В настоящее время для решения задач машинного обучения широко используются инструменты на основе языка программирования Python, в частности библиотека PyTorch.
+
+Особенностью задачи обучения с подкреплением является отсутствие классических датасетов. 
+Агент обучается посредством взаимодействия со средой, поэтому ключевым аспектом является настройка эффективного механизма получения данных о состоянии среды. 
+Это необходимо для обеспечения возможности быстрого обучения моделей и валидации гипотез в разумные временные рамки.
+
+\subsection{Взаимодействие с игрой}
+
+В нашем случае среда представлена игрой, разработанной на движке Godot. 
+У нас был доступ к исходному коду игры, что позволило провести более глубокую интеграцию.
+
+Для обеспечения максимально эффективного взаимодействия модели со средой было принято решение переписать логику игры на языке Python. 
+Это позволило избежать задержек, связанных с долгим отображением анимаций в игре, и дало возможность более детально изучить реализацию игровых механик. 
+В результате скорость применения действий агентом в среде увеличилась в тысячи раз.
+
+Альтернативные подходы к взаимодействию с игрой могли включать:
+
+1. Симуляция взаимодействия через пользовательский интерфейс. 
+Этот метод предполагает имитацию действий пользователя, таких как перемещения курсора и нажатия мыши, для взаимодействия с элементами игры. 
+Такой подход мог бы быть полезен в дальнейшем, если бы возникла необходимость интегрировать агента в официальный рейтинг игроков (лидерборд) игры, так как он позволяет модели взаимодействовать с игрой так же, как это делает человек.
+
+2. Взаимодействие с игрой на уровне бинарных данных. 
+Имея доступ к исходному коду игры, можно было бы реализовать взаимодействие на более глубоком уровне — путём сбора и обработки бинарных данных. 
+Это позволило бы модели работать с игрой как с библиотечной функцией, что потенциально может ускорить обмен данными и упростить процесс обучения агента, минуя необходимость в визуальной интерпретации состояния игры.
+
+\subsection{Минимальный подходящий алгоритм}
+
+\hl{написать содержание магистерской}
+
+\section{Поиск системы наград}
+
+\subsection{Наказывающая система наград}
+\subsection{Поощряющая система наград}
+\subsection{Дальновидная система наград}
+
+\section{Оптимизация процесса обучения модели}
+\subsection{Маскирование недоступных действий}
+\subsection{Сбора задач в спринте с помощью алгоритма "Задача о рюкзаке"}
+\subsection{Добавления действия, позволяющего доигрывать пустыми спринтами}
+
+\section{Сравнение с человеческими возможностями}
+\subsection{Взаимодействие с веб версией}
+\subsection{Подготовка фиксированной среды}
+
+\newpage
+\section*{\centering{ЗАКЛЮЧЕНИЕ}}
+\addcontentsline{toc}{section}{ЗАКЛЮЧЕНИЕ}
+
+\hl{Написать заключение}
+
+\newpage
+
+\renewcommand\refname{\centering{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ И ЛИТЕРАТУРЫ}}
+\addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ И ЛИТЕРАТУРЫ}
+
+\bibliographystyle{unsrt}
+\bibliography{references} 
+
+\newpage
+\section*{\centering{ПРИЛОЖЕНИЕ А}}
+\addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ А}
+\lstset{
+  language=Python,
+  basicstyle=\fontsize{14}{16}\linespread{1}\selectfont\ttfamily,
+  basewidth=0.5em,
+  aboveskip=0pt, belowskip=0pt, showstringspaces=false,
+}
+\begin{lstlisting}
+import datetime
+import os
+import sys
+
+import pandas as pd
+
+from typing import List
+
+from pipeline.study_agent import save_dqn_agent
+
+sys.path.append("..")
+sys.path.append("../..")
+
+from algorithms import DoubleDQN
+from environment import CreditPayerEnv
+from environment.backlog_env import BacklogEnv
+from environment.userstory_env import UserstoryEnv
+from environment.reward_sytem import (
+    EmpiricalCreditStageRewardSystem,
+    FullPotentialCreditRewardSystem,
+)
+from pipeline.aggregator_study import update_reward_system_config
+from pipeline import LoggingStudy
+
+
+def make_credit_study(trajectory_max_len, episode_n, potential):
+    userstory_env = UserstoryEnv(4, 0, 0)
+    backlog_env = BacklogEnv(12, 0, 0, 0, 0, 0)
+    if potential:
+        reward_system = FullPotentialCreditRewardSystem(config={}, coefficient=1)
+    else:
+        reward_system = EmpiricalCreditStageRewardSystem(True, config={})
+    env = CreditPayerEnv(
+        userstory_env,
+        backlog_env,
+        with_end=True,
+        with_info=True,
+        reward_system=reward_system,
+    )
+    update_reward_system_config(env, reward_system)
+
+    state_dim = env.state_dim
+    action_n = env.action_n
+
+    agent = DoubleDQN(
+        state_dim,
+        action_n,
+        gamma=0.9,
+        tau=0.001,
+        epsilon_decrease=1e-4,
+        batch_size=64,
+        lr=1e-3,
+        epsilon_min=0.01,
+    )
+
+    study = LoggingStudy(env, agent, trajectory_max_len)
+    study.study_agent(episode_n)
+
+    return study
+
+
+def main(potential):
+    episode_n = 1501
+    study = make_credit_study(200, episode_n, potential)
+    save_dqn_agent(study.agent, "models/credit_start_model.pt")
+
+
+if __name__ == "__main__":
+    n = 1
+    for i in range(n):
+        main(True)
+
+\end{lstlisting}
+
+\end{document}
